@@ -42,7 +42,7 @@ func main() {
 	router.GET("/user/:id", userController.GetUserID)
 	router.GET("/users", userController.GetAllUsers)
 	router.POST("/user", userController.CreateUser)
-
+	router.PUT("/user/:id", userController.UpdateUser)
 	router.DELETE("/user/:id", userController.DeleteUser)
 
 	// run the server in port 8080

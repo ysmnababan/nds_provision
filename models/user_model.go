@@ -16,3 +16,8 @@ type CreateUser struct{
 	Pwd      string
 	Birthday string
 }
+
+type EditUser struct{
+	Name     string
+	Birthday string
+}
