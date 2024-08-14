@@ -9,3 +9,10 @@ type User struct {
 	Pwd      string `gorm:"size:255"`
 	Birthday *time.Time 
 }
+
+type CreateUser struct{
+	Name     string 
+	Email    string 
+	Pwd      string
+	Birthday string
+}

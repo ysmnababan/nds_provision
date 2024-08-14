@@ -8,14 +8,14 @@ import (
 )
 
 var (
-	ErrNoUser    = errors.New("user doesn't exist")
-	ErrQuery     = errors.New("query execution failed")
-	ErrInvalidId = errors.New("invalid id")
-	ErrBindJSON      = errors.New("unable to bind json")
+	ErrNoUser     = errors.New("user doesn't exist")
+	ErrQuery      = errors.New("query execution failed")
+	ErrInvalidId  = errors.New("invalid id")
+	ErrBindJSON   = errors.New("unable to bind json")
+	ErrUserExists = errors.New("user already exist")
 
 	ErrNoRows        = errors.New("no rows in result set")
 	ErrScan          = errors.New("row scanning failed")
-	ErrUserExists    = errors.New("user already exist")
 	ErrRowsAffected  = errors.New("unable to get affected row")
 	ErrNoAffectedRow = errors.New("rows affected is 0")
 	ErrLastInsertId  = errors.New("unable to get last insert id")
@@ -29,9 +29,11 @@ func ParseError(err error, c *gin.Context) {
 	switch {
 	case errors.Is(err, ErrInvalidId):
 		fallthrough
+	case errors.Is(err, ErrUserExists):
+		fallthrough
 	case errors.Is(err, ErrNoUser):
 		code = http.StatusBadRequest
-	case errors.Is(err,ErrBindJSON):
+	case errors.Is(err, ErrBindJSON):
 		fallthrough
 	case errors.Is(err, ErrQuery):
 		code = http.StatusInternalServerError

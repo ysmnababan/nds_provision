@@ -37,10 +37,13 @@ func main() {
 
 	userRepo := &repository.Repo{DB: db}
 	userController := &controller.UserController{UR: userRepo}
-	
+
 	//crud endpoint
 	router.GET("/user/:id", userController.GetUserID)
 	router.GET("/users", userController.GetAllUsers)
+	router.POST("/user", userController.CreateUser)
+
+	router.DELETE("/user/:id", userController.DeleteUser)
 
 	// run the server in port 8080
 	router.Run(":8080")

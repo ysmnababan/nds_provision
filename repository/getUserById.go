@@ -15,6 +15,9 @@ type Repo struct {
 type UserRepo interface {
 	GetUserID(id uint) (*models.User, error)
 	GetAllUsers() ([]*models.User, error)
+	CreateUser(in *models.User) (*models.User, error)
+
+	DeleteUser(id uint) error
 }
 
 func (r *Repo) GetUserID(id uint) (*models.User, error) {
